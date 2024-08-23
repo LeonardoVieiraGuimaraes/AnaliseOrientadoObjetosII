@@ -1,0 +1,25 @@
+@startuml AnaliseRequisitosCasoUso
+actor Cliente
+actor Funcionario
+boundary Sistema
+entity ClienteClass
+entity ContaComum
+entity Historico
+
+Cliente -> Funcionario: Solicita abertura de conta
+Funcionario -> Sistema: Consulta cadastro por CPF
+Sistema -> ClienteClass: Verificar se cliente existe
+
+alt Cliente não cadastrado
+    ClienteClass -> ClienteClass: Criar novo cliente
+else Cliente já cadastrado
+    ClienteClass -> ClienteClass: Atualizar cliente
+end
+
+ClienteClass -> ClienteClass: Validar CPF
+ClienteClass -> Funcionario: Retornar sucesso ou erro
+Funcionario -> Cliente: Notifica aprovação ou erro
+
+Cliente -> Funcionario: Fornece valor inicial e senha
+Funcionario -> Sistema: Dispara método de abertura
+@enduml
