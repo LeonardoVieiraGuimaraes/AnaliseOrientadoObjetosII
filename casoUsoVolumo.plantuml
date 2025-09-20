@@ -1,0 +1,34 @@
+@startuml Locadora
+actor Cliente
+actor Seguradora
+
+left to right direction
+rectangle "Volumes de Valor" {
+  usecase "Entregar Volumes" as UC1
+  usecase "Segurar Volumes" as UC2
+  
+  
+}
+
+Cliente --> UC1
+UC1 <.. UC2 : <<extend>>
+UC2 <-- Seguradora
+
+@enduml
+
+@startuml Locadora
+actor Cliente
+actor Vendedor
+actor Depositos
+
+
+rectangle "Sistema de software"{
+    usecase "Comprar Produtos" as UC1
+}
+
+Cliente --> UC1
+UC1 <-- Vendedor
+UC1 <-- Depositos
+
+
+@enduml
